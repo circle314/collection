@@ -121,7 +121,7 @@ abstract class AbstractKeyedCollection extends AbstractCollection implements Key
     public function saveID($ID, $item)
     {
         $this->addCollectionItems([
-            $ID => $item
+            (string)$ID => $item
         ]);
     }
     #endregion
