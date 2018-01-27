@@ -4,6 +4,8 @@ namespace Circle314\Component\Collection;
 
 use \ArrayIterator;
 use Circle314\Component\Collection\Exception\CollectionExpectedClassMismatchException;
+use Circle314\Component\Type\Exception\TypeValidationException;
+use Circle314\Component\Type\Exception\ValueOutOfBoundsException;
 use Circle314\Component\Type\StringType;
 
 /**
@@ -114,12 +116,16 @@ abstract class AbstractCollection extends ArrayIterator implements CollectionInt
      *
      * @param $class string
      * @return void
-     * @throws \Circle314\Component\Type\Exception\TypeValidationException
-     * @throws \Circle314\Component\Type\Exception\ValueOutOfBoundsException
      */
     final protected function setCollectionClass($class)
     {
-        $this->collectionClass = new StringType($class);
+        try {
+            $this->collectionClass = new StringType($class);
+        } catch (TypeValidationException $e) {
+            $this->collectionClass = CollectionConstants::_UNMAPPABLE_CLASS;
+        } catch (ValueOutOfBoundsException $e) {
+            $this->collectionClass = CollectionConstants::_UNMAPPABLE_CLASS;
+        }
     }
     #endregion
 
