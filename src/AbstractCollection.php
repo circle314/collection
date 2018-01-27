@@ -96,7 +96,7 @@ abstract class AbstractCollection extends ArrayIterator implements CollectionInt
      */
     final protected function safeOffset($ID)
     {
-        return 'offset_' . (string)$ID;
+        return CollectionConstants::_COLLECTION_KEY_PREFIX . (string)$ID;
     }
 
     /**
@@ -114,6 +114,8 @@ abstract class AbstractCollection extends ArrayIterator implements CollectionInt
      *
      * @param $class string
      * @return void
+     * @throws \Circle314\Component\Type\Exception\TypeValidationException
+     * @throws \Circle314\Component\Type\Exception\ValueOutOfBoundsException
      */
     final protected function setCollectionClass($class)
     {

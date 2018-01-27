@@ -43,5 +43,3 @@ abstract class AbstractCollectionItem implements CollectionItemInterface
     }
     #endregion
 }
-
-?>

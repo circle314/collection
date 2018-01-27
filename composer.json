@@ -4,7 +4,7 @@
     "description": "Circle314 Framework - Collection Component",
     "keywords": ["circle314", "framework"],
     "homepage": "http://www.circle314.com/",
-    "license": "Apache",
+    "license": "Apache-2.0",
     "authors": [
         {
             "name": "Kjartan Johansen",
