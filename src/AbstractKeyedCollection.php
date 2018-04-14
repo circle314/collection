@@ -41,7 +41,11 @@ abstract class AbstractKeyedCollection extends AbstractCollection implements Key
             throw new CollectionItemUnidentifiableException('Attempted to add a collection item to ' . static::class . ' without providing an identifier.');
         } else {
             if($this->isCollectionClass($collectionItem)) {
-                $this->offsetSet($this->safeOffset($collectionItem->ID()), $collectionItem);
+                $ID = (string)$collectionItem->ID() === '' ?
+                    '__NULL_ID__' . spl_object_hash($collectionItem) :
+                    (string)$collectionItem->ID()
+                ;
+                $this->offsetSet($this->safeOffset($ID), $collectionItem);
             } else {
                 throw new CollectionExpectedClassMismatchException('Attempted to add class ' . get_class($collectionItem) . ' to ' . static::class . '. Expected concrete class of type ' . $this->collectionClass()->getValue() . '.');
             }
